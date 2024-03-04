@@ -40,16 +40,16 @@ Route::prefix('/web-service')->group(function(){
             Route::prefix('/dashboard')->group(function(){
                 Route::get('/', 'index')->name('dashboard');
 
-                Route::post('/', 'store');
-                Route::get('/store', 'showStoreResult')->name('store');
+                Route::post('/', 'store')->name('store');
+                Route::get('/store', 'showStoreResult')->name('store_result');
 
                 Route::get('/{web_service}/edit', 'showEdit')->name('edit');
-                Route::put('/{web_service}/edit', 'upload');
-                Route::get('/{web_service}/upload', 'showUploadResult');
+                Route::put('/{web_service}/edit', 'upload')->name('upload');
+                Route::get('/{web_service}/upload', 'showUploadResult')->name('upload_result');
                 Route::post('/{web_service}/edit', 'uploadImg');
 
-                Route::delete('/{web_service}/edit', 'delete');
-                Route::get('/{web_service}/delete', 'showDeleteResult');
+                Route::delete('/{web_service}/edit', 'delete')->name('delete');
+                Route::get('/{web_service}/delete', 'showDeleteResult')->name('delete_result');
             });
         });
     });

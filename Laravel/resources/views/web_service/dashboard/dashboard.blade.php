@@ -17,7 +17,7 @@
     <div class="dashboard_contents_inner">
         <section class="dashboard_section">
             <h2 class="title_section">新規登録</h2>
-            <form action="{{route('store')}}" method="post">
+            <form action="{{route('dashboard')}}" method="post">
                 @csrf
                 <div class="table_wrap">
                     <table class="table_lineup table">
@@ -32,9 +32,9 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td><input type="text" name="lineup" maxlength="40"></td>
-                                <td><textarea name="description" maxlength="255"></textarea></td>
-                                <td><input type="text" name="price"></td>
+                                <td><input type="text" name="lineup" maxlength="40" required></td>
+                                <td><textarea name="description" maxlength="255" required></textarea></td>
+                                <td><input type="text" name="price" required></td>
                                 <td></td>
                                 <td class="w_fit"><button type="submit" class="btn">登録</button></td>
                             </tr>

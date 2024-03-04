@@ -15,8 +15,9 @@ class AdminController extends Controller
 
     //新規登録
     function store(Request $request){
-        //$credentials = $request->only('name', 'description', 'price', 'file_path');
-        //return redirect()->route('store');
+        $input = $request->only('lineup', 'description', 'price', 'file_path');
+        dd($input);
+        //return redirect()->route('store_result');
     }
 
     //新規登録完了画面
