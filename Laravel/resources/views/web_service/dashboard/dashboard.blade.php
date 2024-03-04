@@ -18,6 +18,7 @@
         <section class="dashboard_section">
             <h2 class="title_section">新規登録</h2>
             <form action="{{route('store')}}" method="post">
+                @csrf
                 <div class="table_wrap">
                     <table class="table_lineup table">
                         <thead>
@@ -35,7 +36,7 @@
                                 <td><textarea name="description" maxlength="255"></textarea></td>
                                 <td><input type="text" name="price"></td>
                                 <td></td>
-                                <td class="w_fit"><button class="btn">登録</button></td>
+                                <td class="w_fit"><button type="submit" class="btn">登録</button></td>
                             </tr>
                         </tbody>
                     </table>

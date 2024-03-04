@@ -222,6 +222,7 @@ latouts
 @media print, screen and (min-width: 781px) {
   .nav {
     justify-content: space-between;
+    align-items: flex-end;
     -moz-column-gap: 40px;
          column-gap: 40px;
     padding: 15px 0;
@@ -361,6 +362,9 @@ latouts
 /*==========================
 top
 ==========================*/
+.top_kv {
+  text-align: center;
+}
 .top_kv_read {
   margin: 1em 0.5em;
   color: #1677d7;

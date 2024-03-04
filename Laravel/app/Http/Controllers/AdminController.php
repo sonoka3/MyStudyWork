@@ -13,6 +13,12 @@ class AdminController extends Controller
         return view('web_service.dashboard.dashboard', compact('web_services'));
     }
 
+    //新規登録
+    function store(Request $request){
+        //$credentials = $request->only('name', 'description', 'price', 'file_path');
+        //return redirect()->route('store');
+    }
+
     //新規登録完了画面
     function showStoreResult(){
         return view('web_service.dashboard.store_result');

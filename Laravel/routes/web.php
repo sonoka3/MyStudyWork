@@ -41,7 +41,7 @@ Route::prefix('/web-service')->group(function(){
                 Route::get('/', 'index')->name('dashboard');
 
                 Route::post('/', 'store');
-                Route::get('/store', 'showStoreResult');
+                Route::get('/store', 'showStoreResult')->name('store');
 
                 Route::get('/{web_service}/edit', 'showEdit')->name('edit');
                 Route::put('/{web_service}/edit', 'upload');
