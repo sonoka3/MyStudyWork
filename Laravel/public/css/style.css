@@ -63,6 +63,10 @@ textarea {
   resize: vertical;
 }
 
+input[type=file] {
+  display: none;
+}
+
 @media print, screen and (min-width: 781px) {
   .sp_only {
     display: none;
@@ -83,7 +87,7 @@ textarea {
 
 .w_fit {
   width: 1px;
-  white-space: nowrap;
+  white-space: nowrap !important;
 }
 
 /*==========================
@@ -155,9 +159,17 @@ components
 }
 .table_lineup td {
   padding: 5px;
+  white-space: normal;
 }
 .table_lineup td + td {
   border-left: 1px solid #1677d7;
+}
+.table_lineup td img {
+  min-width: 80px;
+}
+
+.error {
+  background-color: red;
 }
 
 /*==========================
@@ -446,6 +458,7 @@ top
 }
 .top_contact_table td {
   padding: 5px 0;
+  color: #fff;
 }
 .top_contact_table textarea {
   height: 180px;
@@ -467,6 +480,22 @@ top
   .top_contact_btn_submit {
     font-size: 2.7rem;
   }
+}
+.top_contact_btn_back {
+  margin-top: 30px;
+  color: #fff;
+  text-decoration: underline;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+.top_contact_complete {
+  margin-top: 30px;
+  color: #fff;
+  text-align: center;
+}
+.top_map {
+  height: 440px;
 }
 
 /*==========================

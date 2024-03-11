@@ -6,6 +6,8 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
+use App\Listeners\DeleteImage;
+use App\Models\WebService;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -17,6 +19,7 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
+            //DeleteImage::class,
         ],
     ];
 
@@ -26,6 +29,9 @@ class EventServiceProvider extends ServiceProvider
     public function boot(): void
     {
         //
+        parent::boot();
+
+        Event::listen('eloquent.deleting: ' . WebService::class, DeleteImage::class);
     }
 
     /**

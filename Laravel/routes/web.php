@@ -17,16 +17,17 @@ use App\Http\Controllers\WebServiceController,
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    //return view('welcome');
+    return redirect()->route('web_service');
 });
 
 Route::prefix('/web-service')->group(function(){
     Route::controller(WebServiceController::class)->group(function(){
         Route::get('/', 'index')->name('web_service');
-        Route::post('/', 'post');
-        Route::get('/confirm', 'showConfirm');
-        Route::post('/confirm', 'send');
-        Route::get('/complete', 'showComplete');
+        Route::post('/', 'post')->name('post');
+        Route::get('/confirm', 'showConfirm')->name('confirm');
+        Route::post('/confirm', 'send')->name('send');
+        Route::get('/complete', 'showComplete')->name('complete');
     });
 
     Route::controller(AuthController::class)->group(function(){
@@ -44,12 +45,11 @@ Route::prefix('/web-service')->group(function(){
                 Route::get('/store', 'showStoreResult')->name('store_result');
 
                 Route::get('/{web_service}/edit', 'showEdit')->name('edit');
-                Route::put('/{web_service}/edit', 'upload')->name('upload');
+                Route::patch('/{web_service}/edit', 'upload');
                 Route::get('/{web_service}/upload', 'showUploadResult')->name('upload_result');
-                Route::post('/{web_service}/edit', 'uploadImg');
 
-                Route::delete('/{web_service}/edit', 'delete')->name('delete');
-                Route::get('/{web_service}/delete', 'showDeleteResult')->name('delete_result');
+                Route::delete('/{web_service}/delete', 'delete')->name('delete');
+                Route::get('/delete', 'showDeleteResult')->name('delete_result');
             });
         });
     });

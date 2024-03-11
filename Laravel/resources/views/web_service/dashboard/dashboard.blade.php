@@ -17,7 +17,7 @@
     <div class="dashboard_contents_inner">
         <section class="dashboard_section">
             <h2 class="title_section">新規登録</h2>
-            <form action="{{route('dashboard')}}" method="post">
+            <form action="{{route('dashboard')}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="table_wrap">
                     <table class="table_lineup table">
@@ -26,7 +26,7 @@
                                 <th>ラインナップ</th>
                                 <th>サービス内容</th>
                                 <th>金額（税込）</th>
-                                <th><button class="btn">アップロード</button></th>
+                                <th><button type="button" class="js_file_trigger btn">アップロード</button><input type="file" name="image" class="js_file"></th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -35,7 +35,7 @@
                                 <td><input type="text" name="lineup" maxlength="40" required></td>
                                 <td><textarea name="description" maxlength="255" required></textarea></td>
                                 <td><input type="text" name="price" required></td>
-                                <td></td>
+                                <td><img id="image"></td>
                                 <td class="w_fit"><button type="submit" class="btn">登録</button></td>
                             </tr>
                         </tbody>
@@ -63,9 +63,15 @@
                             <td class="text_ac">{{$web_service->lineup}}</td>
                             <td>{{$web_service->description}}</td>
                             <td class="text_ac">{{$web_service->price}}</td>
-                            <td><img src="{{$web_service->file_path}}"></td>
+                            <td><img src="{{ Storage::url($web_service->file_path) }}" alt=""></td>
                             <td class="w_fit"><a href="{{route('edit', $web_service)}}" class="btn">編集</button></td>
-                            <td class="w_fit"><button class="btn">削除</button></td>
+                            <td class="w_fit">
+                                <form action="{{route('delete', $web_service)}}" method="post">
+                                    @method('delete')
+                                    @csrf
+                                    <button type="submit" onclick="return confirm('本当に削除しますか？')" class="btn">削除</button>
+                                </form>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -74,4 +80,25 @@
         </section>
     </div>
 </div>
+@endsection
+@section('script')
+<script>
+    document.querySelector('.js_file_trigger').addEventListener('click', function() {
+        document.querySelector('.js_file').click();
+    });
+
+    const input_file = document.querySelector('.js_file');
+    input_file.addEventListener("change", function (e) {
+      const file = e.target.files[0];//複数ファイルはfiles配列をループで回す
+      const reader = new FileReader();
+      const image = document.getElementById("image");
+      reader.addEventListener("load", function () {
+        image.src = reader.result;
+      }, false);
+
+      if (file) {
+        reader.readAsDataURL(file);
+      }
+    })
+</script>
 @endsection

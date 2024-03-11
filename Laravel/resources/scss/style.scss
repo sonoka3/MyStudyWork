@@ -50,6 +50,9 @@ textarea{
 textarea{
     resize: vertical;
 }
+input[type="file"]{
+    display: none;
+}
 
 @media print, screen and (min-width: 781px) {
     .sp_only{
@@ -71,7 +74,7 @@ textarea{
 
 .w_fit{
     width: 1px;
-    white-space: nowrap;
+    white-space: nowrap !important;
 }
 
 
@@ -138,10 +141,18 @@ components
     }
     td{
         padding: 5px;
+        white-space: normal;
         + td{
             border-left: 1px solid #1677d7;
         }
+        img{
+            min-width: 80px;
+        }
     }
+}
+
+.error{
+    background-color: red;
 }
 
 
@@ -398,6 +409,7 @@ top
             }
             td{
                 padding: 5px 0;
+                color: #fff;
             }
             textarea{
                 height: 180px;
@@ -418,7 +430,23 @@ top
                     font-size: 2.7rem;
                 }
             }
+            &_back{
+                margin-top: 30px;
+                color: #fff;
+                text-decoration: underline;
+                border: none;
+                background: none;
+                cursor: pointer;
+            }
         }
+        &_complete{
+            margin-top: 30px;
+            color: #fff;
+            text-align: center;
+        }
+    }
+    &_map{
+        height: 440px;
     }
 }
 
