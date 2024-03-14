@@ -12,7 +12,7 @@
     <div class="js_nav_area nav_list">
         <ul>
             <li class="nav_item"><a href="{{route('web_service')}}/#service" class="js_nav_link nav_link">サービス一覧</a></li>
-            <li class="nav_item"><a href="{{route('web_service')}}/#contact" class="js_nav_link nav_link">お問い合わせ</a></li>
+            <li class="nav_item"><a href="{{route('web_service')}}/#contact" class="js_nav_link nav_link">お問合せ</a></li>
         </ul>
         <div id="js_focus_trap" tabindex="0"></div>
     </div>
@@ -44,7 +44,7 @@
                     <tr>
                         <td class="text_ac">{{$web_service->lineup}}</td>
                         <td>{{$web_service->description}}</td>
-                        <td class="text_ac">{{$web_service->price}}</td>
+                        <td class="text_ac">¥{{number_format($web_service->price)}} {{$web_service->price_mark}}</td>
                         <td class="text_ac"><img src="{{ Storage::url($web_service->file_path) }}" alt=""></td>
                     </tr>
                     @endforeach

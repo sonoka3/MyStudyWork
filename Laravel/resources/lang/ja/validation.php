@@ -157,6 +157,7 @@ return [
         'lineup' => 'ラインナップ',
         'description' => 'サービス内容',
         'price' => '金額（税込）',
+        'price_mark' => '金額（税込）の記号',
         'image' => '画像',
         'name' => '氏名',
         'email' => 'メールアドレス',

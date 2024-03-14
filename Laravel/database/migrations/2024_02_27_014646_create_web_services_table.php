@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('lineup', 40);
             $table->string('description');
-            $table->string('price');
+            $table->integer('price');
+            $table->string('price_mark');
             $table->string('file_path');
             $table->timestamps();
         });

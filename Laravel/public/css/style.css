@@ -53,9 +53,14 @@ button {
 
 input[type=text],
 input[type=password],
-select,
 textarea {
   width: 100%;
+}
+
+input[type=text],
+input[type=password],
+select,
+textarea {
   padding: 5px;
 }
 
@@ -87,6 +92,14 @@ input[type=file] {
 
 .w_fit {
   width: 1px;
+  white-space: nowrap !important;
+}
+
+.w_6em {
+  width: 6em !important;
+}
+
+.nowrap {
   white-space: nowrap !important;
 }
 

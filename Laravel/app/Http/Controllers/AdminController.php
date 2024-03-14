@@ -18,11 +18,12 @@ class AdminController extends Controller
 
     //新規登録処理
     function store(Request $request){
-        $data = $request->only('lineup', 'description', 'price', 'image');
+        $data = $request->only('lineup', 'description', 'price', 'price_mark', 'image');
         $rules = [
             'lineup' => 'required|string|max:40|no_space',
             'description' => 'required|string|max:255|no_space',
-            'price' => 'required|string|no_space',
+            'price' => 'required|integer|no_space',
+            'price_mark' => 'required',
             'image' => 'required|file|image|mimes:jpeg,jpg,png|max:5120',
         ];
         
@@ -50,6 +51,7 @@ class AdminController extends Controller
         $webService->lineup = $data['lineup'];
         $webService->description = $data['description'];
         $webService->price = $data['price'];
+        $webService->price_mark = $data['price_mark'];
         $webService->file_path = $data['image'];
         $webService->save();
 
@@ -68,11 +70,12 @@ class AdminController extends Controller
 
     //更新処理
     function upload(Request $request, WebService $web_service){
-        $data = $request->only('lineup', 'description', 'price', 'image');
+        $data = $request->only('lineup', 'description', 'price', 'price_mark', 'image');
         $rules = [
             'lineup' => 'required|string|max:40|no_space',
             'description' => 'required|string|max:255|no_space',
-            'price' => 'required|string|no_space',
+            'price' => 'required|integer|no_space',
+            'price_mark' => 'required',
         ];
 
         if ($request->hasFile('image')) {
@@ -95,6 +98,7 @@ class AdminController extends Controller
         $web_service->lineup = $data['lineup'];
         $web_service->description = $data['description'];
         $web_service->price = $data['price'];
+        $web_service->price_mark = $data['price_mark'];
         $web_service->file_path = $data['image'];
         $web_service->save();
 

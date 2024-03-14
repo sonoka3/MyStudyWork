@@ -22,7 +22,14 @@
                         <tr>
                             <td><input type="text" name="lineup" maxlength="40" value="{{$web_service->lineup}}" required></td>
                             <td><textarea name="description" maxlength="255" required>{{$web_service->description}}</textarea></td>
-                            <td><input type="text" name="price" value="{{$web_service->price}}" required></td>
+                            <td class="nowrap">
+                                ¥ <input type="text" name="price" class="w_6em" value="{{$web_service->price}}" required>
+                                <select name="price_mark">
+                                    <option value="">選択</option>
+                                    <option value="-" {{ $web_service->price_mark == '-' ? 'selected' : '' }}>-</option>
+                                    <option value="～" {{ $web_service->price_mark == '～' ? 'selected' : '' }}>～</option>
+                                </select>
+                            </td>
                             <td class="text_ac"><img src="{{Storage::url($web_service->file_path)}}" id="image"></td>
                             <td class="w_fit"><button class="btn">更新</button></td>
                         </tr>
