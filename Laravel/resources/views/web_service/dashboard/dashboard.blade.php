@@ -35,7 +35,7 @@
                                 <td><input type="text" name="lineup" maxlength="40" required></td>
                                 <td><textarea name="description" maxlength="255" required></textarea></td>
                                 <td><input type="text" name="price" required></td>
-                                <td><img id="image"></td>
+                                <td class="text_ac"><img id="image"></td>
                                 <td class="w_fit"><button type="submit" class="btn">登録</button></td>
                             </tr>
                         </tbody>
@@ -63,7 +63,7 @@
                             <td class="text_ac">{{$web_service->lineup}}</td>
                             <td>{{$web_service->description}}</td>
                             <td class="text_ac">{{$web_service->price}}</td>
-                            <td><img src="{{ Storage::url($web_service->file_path) }}" alt=""></td>
+                            <td class="text_ac"><img src="{{ Storage::url($web_service->file_path) }}" alt=""></td>
                             <td class="w_fit"><a href="{{route('edit', $web_service)}}" class="btn">編集</button></td>
                             <td class="w_fit">
                                 <form action="{{route('delete', $web_service)}}" method="post">

@@ -14,7 +14,7 @@
                             <th>ラインナップ</th>
                             <th>サービス内容</th>
                             <th>金額（税込）</th>
-                            <th><button type="button" class="js_file_trigger btn">アップロード</button><input type="file" name="image" class="js_file"></th>
+                            <th><button type="button" class="js_file_trigger btn">アップロード</button><input type="file" name="image" class="js_file" value="{{Storage::url($web_service->file_path)}}"></th>
                             <th></th>
                         </tr>
                     </thead>
@@ -23,7 +23,7 @@
                             <td><input type="text" name="lineup" maxlength="40" value="{{$web_service->lineup}}" required></td>
                             <td><textarea name="description" maxlength="255" required>{{$web_service->description}}</textarea></td>
                             <td><input type="text" name="price" value="{{$web_service->price}}" required></td>
-                            <td><img src="{{Storage::url($web_service->file_path)}}" id="image"></td>
+                            <td class="text_ac"><img src="{{Storage::url($web_service->file_path)}}" id="image"></td>
                             <td class="w_fit"><button class="btn">更新</button></td>
                         </tr>
                     </tbody>
@@ -44,7 +44,7 @@
 
     const input_file = document.querySelector('.js_file');
     input_file.addEventListener("change", function (e) {
-      const file = e.target.files[0];//複数ファイルはfiles配列をループで回す
+      const file = e.target.files[0];
       const reader = new FileReader();
       const image = document.getElementById("image");
       reader.addEventListener("load", function () {

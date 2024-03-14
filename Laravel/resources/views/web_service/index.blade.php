@@ -45,7 +45,7 @@
                         <td class="text_ac">{{$web_service->lineup}}</td>
                         <td>{{$web_service->description}}</td>
                         <td class="text_ac">{{$web_service->price}}</td>
-                        <td><img src="{{ Storage::url($web_service->file_path) }}" alt=""></td>
+                        <td class="text_ac"><img src="{{ Storage::url($web_service->file_path) }}" alt=""></td>
                     </tr>
                     @endforeach
                 </tbody>

@@ -73,8 +73,11 @@ class AdminController extends Controller
             'lineup' => 'required|string|max:40|no_space',
             'description' => 'required|string|max:255|no_space',
             'price' => 'required|string|no_space',
-            'image' => 'required|file|image|mimes:jpeg,jpg,png|max:5120',
         ];
+
+        if ($request->hasFile('image')) {
+            $rules['image'] = 'file|image|mimes:jpeg,jpg,png|max:5120';
+        }
         
         $validator = Validator::make($data, $rules);
 
@@ -82,15 +85,18 @@ class AdminController extends Controller
             return redirect()->route('upload_result', $web_service)->withErrors($validator);
         }
 
-        $path = $data['image']->store('up-images', 'public');
-        $data['image'] = $path;
-        
-        $webService = new WebService();
-        $webService->lineup = $data['lineup'];
-        $webService->description = $data['description'];
-        $webService->price = $data['price'];
-        $webService->file_path = $data['image'];
-        $webService->save();
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('up-images', 'public');
+            $data['image'] = $path;
+        } else {
+            $data['image'] = $web_service->file_path;
+        }
+    
+        $web_service->lineup = $data['lineup'];
+        $web_service->description = $data['description'];
+        $web_service->price = $data['price'];
+        $web_service->file_path = $data['image'];
+        $web_service->save();
 
         return redirect()->route('upload_result', $web_service)->with('message', $data['lineup'] . 'サービスの更新が完了しました。');
     }

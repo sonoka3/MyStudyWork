@@ -147,6 +147,15 @@ components
         }
         img{
             min-width: 80px;
+            max-width: 280px;
+            vertical-align: middle;
+        }
+    }
+    tr{
+        &:nth-of-type(n+2){
+            td{
+                border-top: 1px solid #1677d7;
+            }
         }
     }
 }
