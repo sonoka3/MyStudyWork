@@ -1,0 +1,14 @@
+
+
+<?php $__env->startSection('container'); ?>
+<div class="dashboard_contents">
+    <h1 class="title_page">削除画面</h1>
+    <div class="dashboard_contents_inner">
+        <p>正常に削除されました</p>
+        <div class="dashboard_back">
+            <a href="<?php echo e(route('dashboard')); ?>" class="btn">管理画面に戻る</a>
+        </div>
+    </div>
+</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('web_service.layouts.layouts', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\wealthon-training\web-service\Laravel\resources\views/web_service/dashboard/delete_result.blade.php ENDPATH**/ ?>
