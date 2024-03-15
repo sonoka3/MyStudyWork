@@ -33,19 +33,8 @@ class AdminController extends Controller
             return redirect()->route('store_result')->withErrors($validator);
         }
 
-        /*if($request->hasFile('image')){
-            $image = $request->file('image');
-			$path = $image->store('up-images', 'public');
-			if($path){
-				$imageData = [
-					"file_name" => $image->getClientOriginalName(),
-					"file_path" => $path
-				];
-			}
-		}*/
         $path = $data['image']->store('up-images', 'public');
         $data['image'] = $path;
-        //dd($data);
         
         $webService = new WebService();
         $webService->lineup = $data['lineup'];
@@ -79,7 +68,7 @@ class AdminController extends Controller
         ];
 
         if ($request->hasFile('image')) {
-            $rules['image'] = 'file|image|mimes:jpeg,jpg,png|max:5120';
+            $rules['image'] = 'file|image|mimes:jpeg,jpg,png|max:5120|unique_image_hash';
         }
         
         $validator = Validator::make($data, $rules);

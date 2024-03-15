@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('price');
             $table->string('price_mark');
             $table->string('file_path');
+            $table->string('file_hash')->unique();
             $table->timestamps();
         });
     }

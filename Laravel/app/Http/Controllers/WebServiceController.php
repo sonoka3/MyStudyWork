@@ -63,9 +63,8 @@ class WebServiceController extends Controller
         $email_admin = env('MAIL_FROM_ADDRESS');
         $email_user  = $data['email'];
 
-        Mail::to($email_admin)->send(new ContactFormAdminMail($data));
-
         $escapedData = array_map('htmlspecialchars', $data);
+        Mail::to($email_admin)->send(new ContactFormAdminMail($escapedData));
         Mail::to($email_user)->send(new ContactFormUserMail($escapedData));
 
 		return redirect()->route('complete');
