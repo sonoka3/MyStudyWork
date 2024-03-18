@@ -24,7 +24,7 @@ class AdminController extends Controller
             'description' => 'required|string|max:255|no_space',
             'price' => 'required|integer|no_space',
             'price_mark' => 'required',
-            'image' => 'required|file|image|mimes:jpeg,jpg,png|max:5120',
+            'image' => 'required|file|image|mimes:jpeg,jpg,png|max:5120|unique_image_hash',
         ];
         
         $validator = Validator::make($data, $rules);
@@ -35,6 +35,9 @@ class AdminController extends Controller
 
         $path = $data['image']->store('up-images', 'public');
         $data['image'] = $path;
+
+        $imagePath = storage_path('app/public/' . $path);
+        $imageHash = md5_file($imagePath);
         
         $webService = new WebService();
         $webService->lineup = $data['lineup'];
@@ -42,6 +45,7 @@ class AdminController extends Controller
         $webService->price = $data['price'];
         $webService->price_mark = $data['price_mark'];
         $webService->file_path = $data['image'];
+        $webService->file_hash = $imageHash;
         $webService->save();
 
         return redirect()->route('store_result')->with('message', $data['lineup'] . 'サービスの登録が完了しました。');
@@ -80,8 +84,12 @@ class AdminController extends Controller
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('up-images', 'public');
             $data['image'] = $path;
+
+            $imagePath = storage_path('app/public/' . $path);
+            $imageHash = md5_file($imagePath);
         } else {
             $data['image'] = $web_service->file_path;
+            $imageHash = $web_service->file_hash;
         }
     
         $web_service->lineup = $data['lineup'];
@@ -89,6 +97,7 @@ class AdminController extends Controller
         $web_service->price = $data['price'];
         $web_service->price_mark = $data['price_mark'];
         $web_service->file_path = $data['image'];
+        $web_service->file_hash = $imageHash;
         $web_service->save();
 
         return redirect()->route('upload_result', $web_service)->with('message', $data['lineup'] . 'サービスの更新が完了しました。');
